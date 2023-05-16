@@ -6,6 +6,9 @@ import "share/share.proto";
 
 option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-channel-go;channelpb";
 
+message SetKey {
+  string key = 1;
+}
 
 message Data {
   bytes data = 1;
@@ -13,13 +16,19 @@ message Data {
 
 message ChannelRequest {
   oneof Req {
-    Data data = 1;
+    SetKey set_key = 1;
+    Data data = 2;
   }
+}
+
+message KeyAccept {
+
 }
 
 message ReceiveResponse {
   oneof Resp {
-    Data data = 1;
+    KeyAccept key_accept = 1;
+    Data data = 2;
   }
 }
 

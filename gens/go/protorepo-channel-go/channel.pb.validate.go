@@ -35,6 +35,106 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on SetKey with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *SetKey) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SetKey with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in SetKeyMultiError, or nil if none found.
+func (m *SetKey) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SetKey) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Key
+
+	if len(errors) > 0 {
+		return SetKeyMultiError(errors)
+	}
+
+	return nil
+}
+
+// SetKeyMultiError is an error wrapping multiple validation errors returned by
+// SetKey.ValidateAll() if the designated constraints aren't met.
+type SetKeyMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SetKeyMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SetKeyMultiError) AllErrors() []error { return m }
+
+// SetKeyValidationError is the validation error returned by SetKey.Validate if
+// the designated constraints aren't met.
+type SetKeyValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SetKeyValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SetKeyValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SetKeyValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SetKeyValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SetKeyValidationError) ErrorName() string { return "SetKeyValidationError" }
+
+// Error satisfies the builtin error interface
+func (e SetKeyValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSetKey.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SetKeyValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SetKeyValidationError{}
+
 // Validate checks the field values on Data with the rules defined in the proto
 // definition for this message. If any rules are violated, the first error
 // encountered is returned, or nil if there are no violations.
@@ -158,6 +258,47 @@ func (m *ChannelRequest) validate(all bool) error {
 	var errors []error
 
 	switch v := m.Req.(type) {
+	case *ChannelRequest_SetKey:
+		if v == nil {
+			err := ChannelRequestValidationError{
+				field:  "Req",
+				reason: "oneof value cannot be a typed-nil",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+		if all {
+			switch v := interface{}(m.GetSetKey()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ChannelRequestValidationError{
+						field:  "SetKey",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ChannelRequestValidationError{
+						field:  "SetKey",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetSetKey()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ChannelRequestValidationError{
+					field:  "SetKey",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	case *ChannelRequest_Data:
 		if v == nil {
 			err := ChannelRequestValidationError{
@@ -281,6 +422,105 @@ var _ interface {
 	ErrorName() string
 } = ChannelRequestValidationError{}
 
+// Validate checks the field values on KeyAccept with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *KeyAccept) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on KeyAccept with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in KeyAcceptMultiError, or nil
+// if none found.
+func (m *KeyAccept) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *KeyAccept) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return KeyAcceptMultiError(errors)
+	}
+
+	return nil
+}
+
+// KeyAcceptMultiError is an error wrapping multiple validation errors returned
+// by KeyAccept.ValidateAll() if the designated constraints aren't met.
+type KeyAcceptMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m KeyAcceptMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m KeyAcceptMultiError) AllErrors() []error { return m }
+
+// KeyAcceptValidationError is the validation error returned by
+// KeyAccept.Validate if the designated constraints aren't met.
+type KeyAcceptValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e KeyAcceptValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e KeyAcceptValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e KeyAcceptValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e KeyAcceptValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e KeyAcceptValidationError) ErrorName() string { return "KeyAcceptValidationError" }
+
+// Error satisfies the builtin error interface
+func (e KeyAcceptValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sKeyAccept.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = KeyAcceptValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = KeyAcceptValidationError{}
+
 // Validate checks the field values on ReceiveResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.
@@ -304,6 +544,47 @@ func (m *ReceiveResponse) validate(all bool) error {
 	var errors []error
 
 	switch v := m.Resp.(type) {
+	case *ReceiveResponse_KeyAccept:
+		if v == nil {
+			err := ReceiveResponseValidationError{
+				field:  "Resp",
+				reason: "oneof value cannot be a typed-nil",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+		if all {
+			switch v := interface{}(m.GetKeyAccept()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ReceiveResponseValidationError{
+						field:  "KeyAccept",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ReceiveResponseValidationError{
+						field:  "KeyAccept",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetKeyAccept()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ReceiveResponseValidationError{
+					field:  "KeyAccept",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	case *ReceiveResponse_Data:
 		if v == nil {
 			err := ReceiveResponseValidationError{

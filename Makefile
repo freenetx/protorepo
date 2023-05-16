@@ -21,9 +21,9 @@ protoc:
 			--go_out=./tmp \
 			--go-grpc_out=./tmp \
 			--validate_out="lang=go,paths=:./tmp" \
-			--doc_out=./docs --doc_opt=html,index.html \
 			--js_out=import_style=commonjs,binary:./tmp \
 			--ts_out=service=grpc-web:./tmp \
+			--doc_out=./docs --doc_opt=html,index.html,source_relative \
 			$$file; \
 	done
 	@if [[ -e gens ]]; then rm -rf gens; fi;

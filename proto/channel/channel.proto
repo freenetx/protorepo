@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package file.api;
+
+import "share/share.proto";
+
+option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-channel-go;channelpb";
+
+message Create {
+  bytes token = 1;
+  bytes destination = 2;
+}
+
+message Data {
+  bytes data = 1;
+}
+
+message Close {
+
+}
+
+message ChannelRequest {
+  oneof Req {
+    Create create = 1;
+    Data data = 2;
+    Close close = 3;
+  }
+}
+
+message Created {
+
+}
+
+message Closed {
+
+}
+
+message ReceiveResponse {
+  oneof Resp {
+    Created created = 1;
+    Data data = 2;
+    Closed closed = 3;
+  }
+}
+
+
+service ChannelService {
+  rpc Test(share.api.Empty) returns (share.api.Empty) {}
+  rpc Channel(stream ChannelRequest) returns (stream ReceiveResponse) {}
+}

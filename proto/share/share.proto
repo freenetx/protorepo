@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package share.api;
+
+option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-share-go;sharepb";
+
+message Empty {
+
+}
+
+
+message Status {
+  int32 status = 1;
+  string message = 2;
+}

@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ChannelService_Test_FullMethodName    = "/file.api.ChannelService/Test"
-	ChannelService_Channel_FullMethodName = "/file.api.ChannelService/Channel"
+	ChannelService_Test_FullMethodName    = "/channel.api.ChannelService/Test"
+	ChannelService_Channel_FullMethodName = "/channel.api.ChannelService/Channel"
 )
 
 // ChannelServiceClient is the client API for ChannelService service.
@@ -160,7 +160,7 @@ func (x *channelServiceChannelServer) Recv() (*ChannelRequest, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ChannelService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "file.api.ChannelService",
+	ServiceName: "channel.api.ChannelService",
 	HandlerType: (*ChannelServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

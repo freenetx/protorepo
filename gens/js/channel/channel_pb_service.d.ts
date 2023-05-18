@@ -1,4 +1,4 @@
-// package: file.api
+// package: channel.api
 // file: proto/channel/channel.proto
 
 import * as proto_channel_channel_pb from "../../proto/channel/channel_pb";

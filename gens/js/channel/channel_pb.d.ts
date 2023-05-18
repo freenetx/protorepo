@@ -1,4 +1,4 @@
-// package: file.api
+// package: channel.api
 // file: proto/channel/channel.proto
 
 import * as jspb from "google-protobuf";
@@ -25,6 +25,12 @@ export namespace SetKey {
 }
 
 export class Data extends jspb.Message {
+  getSrcKey(): string;
+  setSrcKey(value: string): void;
+
+  getDstKey(): string;
+  setDstKey(value: string): void;
+
   getData(): Uint8Array | string;
   getData_asU8(): Uint8Array;
   getData_asB64(): string;
@@ -42,6 +48,8 @@ export class Data extends jspb.Message {
 
 export namespace Data {
   export type AsObject = {
+    srcKey: string,
+    dstKey: string,
     data: Uint8Array | string,
   }
 }
@@ -81,27 +89,27 @@ export namespace ChannelRequest {
   }
 }
 
-export class KeyAccept extends jspb.Message {
+export class KeyAccepted extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KeyAccept.AsObject;
-  static toObject(includeInstance: boolean, msg: KeyAccept): KeyAccept.AsObject;
+  toObject(includeInstance?: boolean): KeyAccepted.AsObject;
+  static toObject(includeInstance: boolean, msg: KeyAccepted): KeyAccepted.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: KeyAccept, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KeyAccept;
-  static deserializeBinaryFromReader(message: KeyAccept, reader: jspb.BinaryReader): KeyAccept;
+  static serializeBinaryToWriter(message: KeyAccepted, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KeyAccepted;
+  static deserializeBinaryFromReader(message: KeyAccepted, reader: jspb.BinaryReader): KeyAccepted;
 }
 
-export namespace KeyAccept {
+export namespace KeyAccepted {
   export type AsObject = {
   }
 }
 
 export class ReceiveResponse extends jspb.Message {
-  hasKeyAccept(): boolean;
-  clearKeyAccept(): void;
-  getKeyAccept(): KeyAccept | undefined;
-  setKeyAccept(value?: KeyAccept): void;
+  hasKeyAccepted(): boolean;
+  clearKeyAccepted(): void;
+  getKeyAccepted(): KeyAccepted | undefined;
+  setKeyAccepted(value?: KeyAccepted): void;
 
   hasData(): boolean;
   clearData(): void;
@@ -121,13 +129,13 @@ export class ReceiveResponse extends jspb.Message {
 
 export namespace ReceiveResponse {
   export type AsObject = {
-    keyAccept?: KeyAccept.AsObject,
+    keyAccepted?: KeyAccepted.AsObject,
     data?: Data.AsObject,
   }
 
   export enum RespCase {
     RESP_NOT_SET = 0,
-    KEY_ACCEPT = 1,
+    KEY_ACCEPTED = 1,
     DATA = 2,
   }
 }

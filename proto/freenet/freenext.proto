@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package freenet.api;
+
+option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-freenet-go;freenetpb";
+
+message SyncMessage {
+  string id = 1;
+  repeated string lan_ip = 2;
+  repeated string vpn_ip = 3;
+}
+
+message MessageAck {
+  string id = 1;
+}
+
+message Data {
+  bytes data = 1;
+}
+
+message ClientMessage {
+  oneof Request {
+    Data data = 1;
+    SyncMessage sync_message = 2;
+  }
+
+  oneof Response {
+    MessageAck message_ack = 100;
+  }
+}
+
+message ServerMessage {
+  oneof Request {
+    Data data = 1;
+    SyncMessage sync_message = 2;
+  }
+
+  oneof Response {
+    MessageAck message_ack = 100;
+  }
+}

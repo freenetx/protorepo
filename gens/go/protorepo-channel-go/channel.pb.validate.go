@@ -156,6 +156,10 @@ func (m *Data) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for SrcKey
+
+	// no validation rules for DstKey
+
 	// no validation rules for Data
 
 	if len(errors) > 0 {
@@ -422,22 +426,22 @@ var _ interface {
 	ErrorName() string
 } = ChannelRequestValidationError{}
 
-// Validate checks the field values on KeyAccept with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on KeyAccepted with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *KeyAccept) Validate() error {
+func (m *KeyAccepted) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on KeyAccept with the rules defined in
+// ValidateAll checks the field values on KeyAccepted with the rules defined in
 // the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in KeyAcceptMultiError, or nil
-// if none found.
-func (m *KeyAccept) ValidateAll() error {
+// result is a list of violation errors wrapped in KeyAcceptedMultiError, or
+// nil if none found.
+func (m *KeyAccepted) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *KeyAccept) validate(all bool) error {
+func (m *KeyAccepted) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -445,18 +449,18 @@ func (m *KeyAccept) validate(all bool) error {
 	var errors []error
 
 	if len(errors) > 0 {
-		return KeyAcceptMultiError(errors)
+		return KeyAcceptedMultiError(errors)
 	}
 
 	return nil
 }
 
-// KeyAcceptMultiError is an error wrapping multiple validation errors returned
-// by KeyAccept.ValidateAll() if the designated constraints aren't met.
-type KeyAcceptMultiError []error
+// KeyAcceptedMultiError is an error wrapping multiple validation errors
+// returned by KeyAccepted.ValidateAll() if the designated constraints aren't met.
+type KeyAcceptedMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m KeyAcceptMultiError) Error() string {
+func (m KeyAcceptedMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -465,11 +469,11 @@ func (m KeyAcceptMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m KeyAcceptMultiError) AllErrors() []error { return m }
+func (m KeyAcceptedMultiError) AllErrors() []error { return m }
 
-// KeyAcceptValidationError is the validation error returned by
-// KeyAccept.Validate if the designated constraints aren't met.
-type KeyAcceptValidationError struct {
+// KeyAcceptedValidationError is the validation error returned by
+// KeyAccepted.Validate if the designated constraints aren't met.
+type KeyAcceptedValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -477,22 +481,22 @@ type KeyAcceptValidationError struct {
 }
 
 // Field function returns field value.
-func (e KeyAcceptValidationError) Field() string { return e.field }
+func (e KeyAcceptedValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e KeyAcceptValidationError) Reason() string { return e.reason }
+func (e KeyAcceptedValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e KeyAcceptValidationError) Cause() error { return e.cause }
+func (e KeyAcceptedValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e KeyAcceptValidationError) Key() bool { return e.key }
+func (e KeyAcceptedValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e KeyAcceptValidationError) ErrorName() string { return "KeyAcceptValidationError" }
+func (e KeyAcceptedValidationError) ErrorName() string { return "KeyAcceptedValidationError" }
 
 // Error satisfies the builtin error interface
-func (e KeyAcceptValidationError) Error() string {
+func (e KeyAcceptedValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -504,14 +508,14 @@ func (e KeyAcceptValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sKeyAccept.%s: %s%s",
+		"invalid %sKeyAccepted.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = KeyAcceptValidationError{}
+var _ error = KeyAcceptedValidationError{}
 
 var _ interface {
 	Field() string
@@ -519,7 +523,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = KeyAcceptValidationError{}
+} = KeyAcceptedValidationError{}
 
 // Validate checks the field values on ReceiveResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, the
@@ -544,7 +548,7 @@ func (m *ReceiveResponse) validate(all bool) error {
 	var errors []error
 
 	switch v := m.Resp.(type) {
-	case *ReceiveResponse_KeyAccept:
+	case *ReceiveResponse_KeyAccepted:
 		if v == nil {
 			err := ReceiveResponseValidationError{
 				field:  "Resp",
@@ -557,11 +561,11 @@ func (m *ReceiveResponse) validate(all bool) error {
 		}
 
 		if all {
-			switch v := interface{}(m.GetKeyAccept()).(type) {
+			switch v := interface{}(m.GetKeyAccepted()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ReceiveResponseValidationError{
-						field:  "KeyAccept",
+						field:  "KeyAccepted",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -569,16 +573,16 @@ func (m *ReceiveResponse) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, ReceiveResponseValidationError{
-						field:  "KeyAccept",
+						field:  "KeyAccepted",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetKeyAccept()).(interface{ Validate() error }); ok {
+		} else if v, ok := interface{}(m.GetKeyAccepted()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ReceiveResponseValidationError{
-					field:  "KeyAccept",
+					field:  "KeyAccepted",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}

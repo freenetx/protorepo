@@ -1,4 +1,4 @@
-// package: file.api
+// package: channel.api
 // file: proto/channel/channel.proto
 
 var proto_channel_channel_pb = require("../../proto/channel/channel_pb");
@@ -7,7 +7,7 @@ var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var ChannelService = (function () {
   function ChannelService() {}
-  ChannelService.serviceName = "file.api.ChannelService";
+  ChannelService.serviceName = "channel.api.ChannelService";
   return ChannelService;
 }());
 

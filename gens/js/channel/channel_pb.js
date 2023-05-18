@@ -167,7 +167,8 @@ proto.file.api.SetKey.prototype.toObject = function(opt_includeInstance) {
  */
 proto.file.api.SetKey.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, "")
+    selfKey: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destinationKey: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -206,7 +207,11 @@ proto.file.api.SetKey.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKey(value);
+      msg.setSelfKey(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDestinationKey(value);
       break;
     default:
       reader.skipField();
@@ -237,10 +242,17 @@ proto.file.api.SetKey.prototype.serializeBinary = function() {
  */
 proto.file.api.SetKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getSelfKey();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getDestinationKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
       f
     );
   }
@@ -248,10 +260,10 @@ proto.file.api.SetKey.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string key = 1;
+ * optional string self_key = 1;
  * @return {string}
  */
-proto.file.api.SetKey.prototype.getKey = function() {
+proto.file.api.SetKey.prototype.getSelfKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -260,8 +272,26 @@ proto.file.api.SetKey.prototype.getKey = function() {
  * @param {string} value
  * @return {!proto.file.api.SetKey} returns this
  */
-proto.file.api.SetKey.prototype.setKey = function(value) {
+proto.file.api.SetKey.prototype.setSelfKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string destination_key = 2;
+ * @return {string}
+ */
+proto.file.api.SetKey.prototype.getDestinationKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file.api.SetKey} returns this
+ */
+proto.file.api.SetKey.prototype.setDestinationKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

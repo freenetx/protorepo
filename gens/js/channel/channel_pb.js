@@ -1,4 +1,4 @@
-// source: proto/channel/channel.proto
+// source: channel/channel.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -13,15 +13,9 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = Function('return this')();
 
-var share_share_pb = require('../../share/share_pb.js');
+var share_share_pb = require('../share/share_pb.js');
 goog.object.extend(proto, share_share_pb);
 goog.exportSymbol('proto.channel.api.ChannelRequest', null, global);
 goog.exportSymbol('proto.channel.api.ChannelRequest.ReqCase', null, global);
@@ -167,7 +161,8 @@ proto.channel.api.SetKey.prototype.toObject = function(opt_includeInstance) {
  */
 proto.channel.api.SetKey.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, "")
+    selfKey: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destinationKey: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -206,7 +201,11 @@ proto.channel.api.SetKey.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKey(value);
+      msg.setSelfKey(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDestinationKey(value);
       break;
     default:
       reader.skipField();
@@ -237,10 +236,17 @@ proto.channel.api.SetKey.prototype.serializeBinary = function() {
  */
 proto.channel.api.SetKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getSelfKey();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getDestinationKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
       f
     );
   }
@@ -248,10 +254,10 @@ proto.channel.api.SetKey.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string key = 1;
+ * optional string self_key = 1;
  * @return {string}
  */
-proto.channel.api.SetKey.prototype.getKey = function() {
+proto.channel.api.SetKey.prototype.getSelfKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -260,8 +266,26 @@ proto.channel.api.SetKey.prototype.getKey = function() {
  * @param {string} value
  * @return {!proto.channel.api.SetKey} returns this
  */
-proto.channel.api.SetKey.prototype.setKey = function(value) {
+proto.channel.api.SetKey.prototype.setSelfKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string destination_key = 2;
+ * @return {string}
+ */
+proto.channel.api.SetKey.prototype.getDestinationKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.channel.api.SetKey} returns this
+ */
+proto.channel.api.SetKey.prototype.setDestinationKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

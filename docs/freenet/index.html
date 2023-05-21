@@ -175,15 +175,27 @@
         
           
           <li>
-            <a href="#proto%2fshare%2fshare.proto">proto/share/share.proto</a>
+            <a href="#freenet%2ffreenext.proto">freenet/freenext.proto</a>
             <ul>
               
                 <li>
-                  <a href="#share.api.Empty"><span class="badge">M</span>Empty</a>
+                  <a href="#freenet.api.ClientMessage"><span class="badge">M</span>ClientMessage</a>
                 </li>
               
                 <li>
-                  <a href="#share.api.Status"><span class="badge">M</span>Status</a>
+                  <a href="#freenet.api.Data"><span class="badge">M</span>Data</a>
+                </li>
+              
+                <li>
+                  <a href="#freenet.api.MessageAck"><span class="badge">M</span>MessageAck</a>
+                </li>
+              
+                <li>
+                  <a href="#freenet.api.ServerMessage"><span class="badge">M</span>ServerMessage</a>
+                </li>
+              
+                <li>
+                  <a href="#freenet.api.SyncMessage"><span class="badge">M</span>SyncMessage</a>
                 </li>
               
               
@@ -199,19 +211,12 @@
     
       
       <div class="file-heading">
-        <h2 id="proto/share/share.proto">proto/share/share.proto</h2><a href="#title">Top</a>
+        <h2 id="freenet/freenext.proto">freenet/freenext.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="share.api.Empty">Empty</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="share.api.Status">Status</h3>
+        <h3 id="freenet.api.ClientMessage">ClientMessage</h3>
         <p></p>
 
         
@@ -222,16 +227,147 @@
             <tbody>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>data</td>
+                  <td><a href="#freenet.api.Data">Data</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>message</td>
+                  <td>sync_message</td>
+                  <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message_ack</td>
+                  <td><a href="#freenet.api.MessageAck">MessageAck</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="freenet.api.Data">Data</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="freenet.api.MessageAck">MessageAck</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="freenet.api.ServerMessage">ServerMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#freenet.api.Data">Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sync_message</td>
+                  <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message_ack</td>
+                  <td><a href="#freenet.api.MessageAck">MessageAck</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="freenet.api.SyncMessage">SyncMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lan_ips</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vpn_ips</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               

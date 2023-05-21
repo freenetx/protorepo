@@ -1,4 +1,4 @@
-// source: proto/freenet/freenext.proto
+// source: freenet/freenext.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = Function('return this')();
 
 goog.exportSymbol('proto.freenet.api.ClientMessage', null, global);
 goog.exportSymbol('proto.freenet.api.ClientMessage.RequestCase', null, global);
@@ -175,8 +169,8 @@ proto.freenet.api.SyncMessage.prototype.toObject = function(opt_includeInstance)
 proto.freenet.api.SyncMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    lanIpList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    vpnIpList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    lanIpsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    vpnIpsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -219,11 +213,11 @@ proto.freenet.api.SyncMessage.deserializeBinaryFromReader = function(msg, reader
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.addLanIp(value);
+      msg.addLanIps(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.addVpnIp(value);
+      msg.addVpnIps(value);
       break;
     default:
       reader.skipField();
@@ -261,14 +255,14 @@ proto.freenet.api.SyncMessage.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getLanIpList();
+  f = message.getLanIpsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       2,
       f
     );
   }
-  f = message.getVpnIpList();
+  f = message.getVpnIpsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       3,
@@ -297,10 +291,10 @@ proto.freenet.api.SyncMessage.prototype.setId = function(value) {
 
 
 /**
- * repeated string lan_ip = 2;
+ * repeated string lan_ips = 2;
  * @return {!Array<string>}
  */
-proto.freenet.api.SyncMessage.prototype.getLanIpList = function() {
+proto.freenet.api.SyncMessage.prototype.getLanIpsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
@@ -309,7 +303,7 @@ proto.freenet.api.SyncMessage.prototype.getLanIpList = function() {
  * @param {!Array<string>} value
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.setLanIpList = function(value) {
+proto.freenet.api.SyncMessage.prototype.setLanIpsList = function(value) {
   return jspb.Message.setField(this, 2, value || []);
 };
 
@@ -319,7 +313,7 @@ proto.freenet.api.SyncMessage.prototype.setLanIpList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.addLanIp = function(value, opt_index) {
+proto.freenet.api.SyncMessage.prototype.addLanIps = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
@@ -328,16 +322,16 @@ proto.freenet.api.SyncMessage.prototype.addLanIp = function(value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.clearLanIpList = function() {
-  return this.setLanIpList([]);
+proto.freenet.api.SyncMessage.prototype.clearLanIpsList = function() {
+  return this.setLanIpsList([]);
 };
 
 
 /**
- * repeated string vpn_ip = 3;
+ * repeated string vpn_ips = 3;
  * @return {!Array<string>}
  */
-proto.freenet.api.SyncMessage.prototype.getVpnIpList = function() {
+proto.freenet.api.SyncMessage.prototype.getVpnIpsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
@@ -346,7 +340,7 @@ proto.freenet.api.SyncMessage.prototype.getVpnIpList = function() {
  * @param {!Array<string>} value
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.setVpnIpList = function(value) {
+proto.freenet.api.SyncMessage.prototype.setVpnIpsList = function(value) {
   return jspb.Message.setField(this, 3, value || []);
 };
 
@@ -356,7 +350,7 @@ proto.freenet.api.SyncMessage.prototype.setVpnIpList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.addVpnIp = function(value, opt_index) {
+proto.freenet.api.SyncMessage.prototype.addVpnIps = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
@@ -365,8 +359,8 @@ proto.freenet.api.SyncMessage.prototype.addVpnIp = function(value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.freenet.api.SyncMessage} returns this
  */
-proto.freenet.api.SyncMessage.prototype.clearVpnIpList = function() {
-  return this.setVpnIpList([]);
+proto.freenet.api.SyncMessage.prototype.clearVpnIpsList = function() {
+  return this.setVpnIpsList([]);
 };
 
 

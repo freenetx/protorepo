@@ -11,3 +11,9 @@
   5. https://github.com/pseudomuto/protoc-gen-doc
   6. npm install ts-protoc-gen -g #https://github.com/improbable-eng/ts-protoc-gen
   ```
+
+```bash
+# mac
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+```

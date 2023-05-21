@@ -1,3 +1,3 @@
 // package: freenet.api
-// file: proto/freenet/freenext.proto
+// file: freenet/freenext.proto
 

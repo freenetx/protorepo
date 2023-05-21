@@ -6,8 +6,8 @@ option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-freenet-go;
 
 message SyncMessage {
   string id = 1;
-  repeated string lan_ip = 2;
-  repeated string vpn_ip = 3;
+  repeated string lan_ips = 2;
+  repeated string vpn_ips = 3;
 }
 
 message MessageAck {

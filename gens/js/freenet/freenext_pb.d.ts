@@ -1,5 +1,5 @@
 // package: freenet.api
-// file: proto/freenet/freenext.proto
+// file: freenet/freenext.proto
 
 import * as jspb from "google-protobuf";
 
@@ -7,15 +7,15 @@ export class SyncMessage extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  clearLanIpList(): void;
-  getLanIpList(): Array<string>;
-  setLanIpList(value: Array<string>): void;
-  addLanIp(value: string, index?: number): string;
+  clearLanIpsList(): void;
+  getLanIpsList(): Array<string>;
+  setLanIpsList(value: Array<string>): void;
+  addLanIps(value: string, index?: number): string;
 
-  clearVpnIpList(): void;
-  getVpnIpList(): Array<string>;
-  setVpnIpList(value: Array<string>): void;
-  addVpnIp(value: string, index?: number): string;
+  clearVpnIpsList(): void;
+  getVpnIpsList(): Array<string>;
+  setVpnIpsList(value: Array<string>): void;
+  addVpnIps(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SyncMessage.AsObject;
@@ -30,8 +30,8 @@ export class SyncMessage extends jspb.Message {
 export namespace SyncMessage {
   export type AsObject = {
     id: string,
-    lanIpList: Array<string>,
-    vpnIpList: Array<string>,
+    lanIpsList: Array<string>,
+    vpnIpsList: Array<string>,
   }
 }
 

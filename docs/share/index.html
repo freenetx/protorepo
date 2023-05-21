@@ -175,35 +175,19 @@
         
           
           <li>
-            <a href="#proto%2fchannel%2fchannel.proto">proto/channel/channel.proto</a>
+            <a href="#share%2fshare.proto">share/share.proto</a>
             <ul>
               
                 <li>
-                  <a href="#channel.api.ChannelRequest"><span class="badge">M</span>ChannelRequest</a>
+                  <a href="#share.api.Empty"><span class="badge">M</span>Empty</a>
                 </li>
               
                 <li>
-                  <a href="#channel.api.Data"><span class="badge">M</span>Data</a>
-                </li>
-              
-                <li>
-                  <a href="#channel.api.KeyAccepted"><span class="badge">M</span>KeyAccepted</a>
-                </li>
-              
-                <li>
-                  <a href="#channel.api.ReceiveResponse"><span class="badge">M</span>ReceiveResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#channel.api.SetKey"><span class="badge">M</span>SetKey</a>
+                  <a href="#share.api.Status"><span class="badge">M</span>Status</a>
                 </li>
               
               
               
-              
-                <li>
-                  <a href="#channel.api.ChannelService"><span class="badge">S</span>ChannelService</a>
-                </li>
               
             </ul>
           </li>
@@ -215,12 +199,19 @@
     
       
       <div class="file-heading">
-        <h2 id="proto/channel/channel.proto">proto/channel/channel.proto</h2><a href="#title">Top</a>
+        <h2 id="share/share.proto">share/share.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="channel.api.ChannelRequest">ChannelRequest</h3>
+        <h3 id="share.api.Empty">Empty</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="share.api.Status">Status</h3>
         <p></p>
 
         
@@ -231,121 +222,14 @@
             <tbody>
               
                 <tr>
-                  <td>set_key</td>
-                  <td><a href="#channel.api.SetKey">SetKey</a></td>
+                  <td>status</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>data</td>
-                  <td><a href="#channel.api.Data">Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="channel.api.Data">Data</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>src_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>dst_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="channel.api.KeyAccepted">KeyAccepted</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="channel.api.ReceiveResponse">ReceiveResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key_accepted</td>
-                  <td><a href="#channel.api.KeyAccepted">KeyAccepted</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#channel.api.Data">Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="channel.api.SetKey">SetKey</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>self_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>destination_key</td>
+                  <td>message</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -364,32 +248,6 @@
       
 
       
-        <h3 id="channel.api.ChannelService">ChannelService</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Test</td>
-                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
-                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Channel</td>
-                <td><a href="#channel.api.ChannelRequest">ChannelRequest</a> stream</td>
-                <td><a href="#channel.api.ReceiveResponse">ReceiveResponse</a> stream</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
     
 
     <h2 id="scalar-value-types">Scalar Value Types</h2>

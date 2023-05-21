@@ -1,3 +1,3 @@
 // package: share.api
-// file: proto/share/share.proto
+// file: share/share.proto
 

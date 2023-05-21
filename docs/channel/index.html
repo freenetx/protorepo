@@ -175,31 +175,35 @@
         
           
           <li>
-            <a href="#proto%2ffreenet%2ffreenext.proto">proto/freenet/freenext.proto</a>
+            <a href="#channel%2fchannel.proto">channel/channel.proto</a>
             <ul>
               
                 <li>
-                  <a href="#freenet.api.ClientMessage"><span class="badge">M</span>ClientMessage</a>
+                  <a href="#channel.api.ChannelRequest"><span class="badge">M</span>ChannelRequest</a>
                 </li>
               
                 <li>
-                  <a href="#freenet.api.Data"><span class="badge">M</span>Data</a>
+                  <a href="#channel.api.Data"><span class="badge">M</span>Data</a>
                 </li>
               
                 <li>
-                  <a href="#freenet.api.MessageAck"><span class="badge">M</span>MessageAck</a>
+                  <a href="#channel.api.KeyAccepted"><span class="badge">M</span>KeyAccepted</a>
                 </li>
               
                 <li>
-                  <a href="#freenet.api.ServerMessage"><span class="badge">M</span>ServerMessage</a>
+                  <a href="#channel.api.ReceiveResponse"><span class="badge">M</span>ReceiveResponse</a>
                 </li>
               
                 <li>
-                  <a href="#freenet.api.SyncMessage"><span class="badge">M</span>SyncMessage</a>
+                  <a href="#channel.api.SetKey"><span class="badge">M</span>SetKey</a>
                 </li>
               
               
               
+              
+                <li>
+                  <a href="#channel.api.ChannelService"><span class="badge">S</span>ChannelService</a>
+                </li>
               
             </ul>
           </li>
@@ -211,12 +215,12 @@
     
       
       <div class="file-heading">
-        <h2 id="proto/freenet/freenext.proto">proto/freenet/freenext.proto</h2><a href="#title">Top</a>
+        <h2 id="channel/channel.proto">channel/channel.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="freenet.api.ClientMessage">ClientMessage</h3>
+        <h3 id="channel.api.ChannelRequest">ChannelRequest</h3>
         <p></p>
 
         
@@ -227,22 +231,15 @@
             <tbody>
               
                 <tr>
+                  <td>set_key</td>
+                  <td><a href="#channel.api.SetKey">SetKey</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>data</td>
-                  <td><a href="#freenet.api.Data">Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sync_message</td>
-                  <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>message_ack</td>
-                  <td><a href="#freenet.api.MessageAck">MessageAck</a></td>
+                  <td><a href="#channel.api.Data">Data</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -254,7 +251,7 @@
 
         
       
-        <h3 id="freenet.api.Data">Data</h3>
+        <h3 id="channel.api.Data">Data</h3>
         <p></p>
 
         
@@ -263,6 +260,20 @@
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>src_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dst_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
               
                 <tr>
                   <td>data</td>
@@ -278,7 +289,14 @@
 
         
       
-        <h3 id="freenet.api.MessageAck">MessageAck</h3>
+        <h3 id="channel.api.KeyAccepted">KeyAccepted</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="channel.api.ReceiveResponse">ReceiveResponse</h3>
         <p></p>
 
         
@@ -289,46 +307,15 @@
             <tbody>
               
                 <tr>
-                  <td>id</td>
-                  <td><a href="#string">string</a></td>
+                  <td>key_accepted</td>
+                  <td><a href="#channel.api.KeyAccepted">KeyAccepted</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="freenet.api.ServerMessage">ServerMessage</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
               
                 <tr>
                   <td>data</td>
-                  <td><a href="#freenet.api.Data">Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sync_message</td>
-                  <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>message_ack</td>
-                  <td><a href="#freenet.api.MessageAck">MessageAck</a></td>
+                  <td><a href="#channel.api.Data">Data</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -340,7 +327,7 @@
 
         
       
-        <h3 id="freenet.api.SyncMessage">SyncMessage</h3>
+        <h3 id="channel.api.SetKey">SetKey</h3>
         <p></p>
 
         
@@ -351,23 +338,16 @@
             <tbody>
               
                 <tr>
-                  <td>id</td>
+                  <td>self_key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>lan_ip</td>
+                  <td>destination_key</td>
                   <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>vpn_ip</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -384,6 +364,32 @@
       
 
       
+        <h3 id="channel.api.ChannelService">ChannelService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Test</td>
+                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
+                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Channel</td>
+                <td><a href="#channel.api.ChannelRequest">ChannelRequest</a> stream</td>
+                <td><a href="#channel.api.ReceiveResponse">ReceiveResponse</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
 
     <h2 id="scalar-value-types">Scalar Value Types</h2>

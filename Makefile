@@ -38,33 +38,30 @@ build: protoc
 lint_in_docker:
 	/usr/local/bin/docker run --volume "$(WORK_PATH):/workspace" --workdir /workspace yoheimuta/protolint lint ./proto
 
+
 compile_in_docker: lint_in_docker
-	/usr/local/bin/docker run --rm -v $(WORK_PATH):/hare -w /hare thethingsindustries/protoc \
-		--proto_path=. \
-		--proto_path=/usr/include/github.com/envoyproxy/protoc-gen-validate \
-		--go_out=. --go_opt=paths=source_relative \
-		--go-grpc_out=. --go-grpc_opt=paths=source_relative \
-		--doc_out=./docs --doc_opt=html,index.html \
-		--validate_out="lang=go,paths=source_relative:." \
-		$(shell find ./proto -name '*.proto')
+	@if [[ -e tmp ]]; then rm -rf tmp; fi;
+	@mkdir -p tmp/docs
+	@if [[ -e gens ]]; then rm -rf gens; fi;
+	@mkdir -p gens/go
+	@mkdir -p gens/js
+	@if [[ -e docs ]]; then rm -rf docs; fi;
+	@find ./proto -name '*.proto'
+	/usr/local/bin/docker run --rm -v $(WORK_PATH):/work -w /work rvolosatovs/protoc \
+		--proto_path=./proto \
+		--go_out=./tmp \
+		--go-grpc_out=./tmp  \
+		--validate_out="lang=go,paths=:./tmp" \
+		--js_out=import_style=commonjs,binary:./tmp \
+		--ts_out=service=grpc-web:./tmp \
+        --doc_out=./tmp/docs --doc_opt=html,index.html,source_relative \
+		./proto/share/share.proto $(shell find ./proto ! -name 'share.proto' -name '*.proto')
 
 build_in_docker: compile_in_docker
-	$(shell cp -r proto/message go && cp -r proto/service go && find go -depth -name '*.proto' | xargs rm)
-	$(shell find proto -depth -name '*.go' | xargs rm)
+	@mv ./tmp/github.com/freenetx/protorepo/gens/go ./gens/
+	@rm -rf ./tmp/github.com
+	@mv ./tmp/docs ./docs
+	@mv ./tmp/* ./gens/js/
+	@rm -rf tmp
 #	$(shell cp -r message go && cp -r service go && find go -depth -name '*.proto' | xargs rm)
 #	$(shell find service -depth -name '*.go' | xargs rm && find message -depth -name '*.go' | xargs rm)
-
-m1_compile_in_docker:
-	/usr/local/bin/docker run --rm -v $(WORK_PATH):/hare -w /hare protoc \
-		--proto_path=. \
-		--proto_path=/usr/include \
-		--proto_path=/usr/include/github.com/envoyproxy/protoc-gen-validate \
-		--go_out=. --go_opt=paths=source_relative \
-		--go-grpc_out=. --go-grpc_opt=paths=source_relative \
-		--doc_out=./docs --doc_opt=html,index.html \
-		--validate_out="lang=go,paths=source_relative:." \
-		$(shell find ./proto -name '*.proto')
-
-m1_build_in_docker: m1_compile_in_docker
-	$(shell cp -r proto/service go && cp -r proto/hokey go && cp -r proto/message go && find go -depth -name '*.proto' | xargs rm)
-	$(shell find proto -depth -name '*.go' | xargs rm)

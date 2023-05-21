@@ -7,7 +7,8 @@ import "share/share.proto";
 option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-channel-go;channelpb";
 
 message SetKey {
-  string key = 1;
+  string self_key = 1;
+  string destination_key = 2;
 }
 
 message Data {

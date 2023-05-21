@@ -1,5 +1,5 @@
 // package: share.api
-// file: share/share.proto
+// file: proto/share/share.proto
 
 import * as jspb from "google-protobuf";
 

@@ -1,4 +1,4 @@
-// source: freenet/freenext.proto
+// source: proto/freenet/freenext.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.freenet.api.ClientMessage', null, global);
 goog.exportSymbol('proto.freenet.api.ClientMessage.RequestCase', null, global);

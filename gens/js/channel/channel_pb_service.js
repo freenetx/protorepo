@@ -1,8 +1,8 @@
 // package: channel.api
-// file: channel/channel.proto
+// file: proto/channel/channel.proto
 
-var channel_channel_pb = require("../channel/channel_pb");
-var share_share_pb = require("../share/share_pb");
+var proto_channel_channel_pb = require("../../proto/channel/channel_pb");
+var share_share_pb = require("../../share/share_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var ChannelService = (function () {
@@ -25,8 +25,8 @@ ChannelService.Channel = {
   service: ChannelService,
   requestStream: true,
   responseStream: true,
-  requestType: channel_channel_pb.ChannelRequest,
-  responseType: channel_channel_pb.ReceiveResponse
+  requestType: proto_channel_channel_pb.ChannelRequest,
+  responseType: proto_channel_channel_pb.ReceiveResponse
 };
 
 exports.ChannelService = ChannelService;

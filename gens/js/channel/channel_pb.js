@@ -1,4 +1,4 @@
-// source: channel/channel.proto
+// source: proto/channel/channel.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -13,9 +13,15 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
-var share_share_pb = require('../share/share_pb.js');
+var share_share_pb = require('../../share/share_pb.js');
 goog.object.extend(proto, share_share_pb);
 goog.exportSymbol('proto.channel.api.ChannelRequest', null, global);
 goog.exportSymbol('proto.channel.api.ChannelRequest.ReqCase', null, global);

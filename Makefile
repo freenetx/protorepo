@@ -13,7 +13,7 @@ lint:
 .PHONY: protoc
 protoc:
 	@if [[ -e tmp ]]; then rm -rf tmp; fi;
-	@mkdir tmp
+	@mkdir -p tmp/docs
 	@for file in $(FILES); do \
 		protoc \
 			-I . \
@@ -23,13 +23,16 @@ protoc:
 			--validate_out="lang=go,paths=:./tmp" \
 			--js_out=import_style=commonjs,binary:./tmp \
 			--ts_out=service=grpc-web:./tmp \
-			--doc_out=./docs --doc_opt=html,index.html,source_relative \
+			--doc_out=./tmp/docs --doc_opt=html,index.html,source_relative \
 			$$file; \
 	done
 	@if [[ -e gens ]]; then rm -rf gens; fi;
 	@mkdir -p gens/go
 	@mkdir -p gens/js
+	@if [[ -e docs ]]; then rm -rf docs; fi;
 	@mv ./tmp/github.com/freenetx/protorepo/gens/go ./gens/
+	@rm -rf ./tmp/github.com
+	@mv ./tmp/docs/proto ./docs
 	@mv ./tmp/proto/* ./gens/js/
 	@rm -rf tmp
 
@@ -46,7 +49,6 @@ compile_in_docker: lint_in_docker
 	@mkdir -p gens/go
 	@mkdir -p gens/js
 	@if [[ -e docs ]]; then rm -rf docs; fi;
-	@find ./proto -name '*.proto'
 	/usr/local/bin/docker run --rm -v $(WORK_PATH):/work -w /work rvolosatovs/protoc \
 		--proto_path=./proto \
 		--go_out=./tmp \

@@ -1,8 +1,8 @@
 // package: channel.api
-// file: channel/channel.proto
+// file: proto/channel/channel.proto
 
-import * as channel_channel_pb from "../channel/channel_pb";
-import * as share_share_pb from "../share/share_pb";
+import * as proto_channel_channel_pb from "../../proto/channel/channel_pb";
+import * as share_share_pb from "../../share/share_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type ChannelServiceTest = {
@@ -19,8 +19,8 @@ type ChannelServiceChannel = {
   readonly service: typeof ChannelService;
   readonly requestStream: true;
   readonly responseStream: true;
-  readonly requestType: typeof channel_channel_pb.ChannelRequest;
-  readonly responseType: typeof channel_channel_pb.ReceiveResponse;
+  readonly requestType: typeof proto_channel_channel_pb.ChannelRequest;
+  readonly responseType: typeof proto_channel_channel_pb.ReceiveResponse;
 };
 
 export class ChannelService {
@@ -70,6 +70,6 @@ export class ChannelServiceClient {
     requestMessage: share_share_pb.Empty,
     callback: (error: ServiceError|null, responseMessage: share_share_pb.Empty|null) => void
   ): UnaryResponse;
-  channel(metadata?: grpc.Metadata): BidirectionalStream<channel_channel_pb.ChannelRequest, channel_channel_pb.ReceiveResponse>;
+  channel(metadata?: grpc.Metadata): BidirectionalStream<proto_channel_channel_pb.ChannelRequest, proto_channel_channel_pb.ReceiveResponse>;
 }
 

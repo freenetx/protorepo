@@ -6,8 +6,8 @@ option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-freenet-go;
 
 message SyncMessage {
   string id = 1;
-  repeated string lan_ips = 2;
-  repeated string vpn_ips = 3;
+  repeated string forward_ips = 2;
+  map<string, string> known_clients= 3;
 }
 
 message MessageAck {
@@ -18,10 +18,21 @@ message Data {
   bytes data = 1;
 }
 
+message ClientInitMessage {
+  string id = 1;
+  repeated string lan_ips = 2;
+  repeated string vpn_ips = 3;
+  string client_address = 4;
+}
+
+message NeedClientInitMessage {
+
+}
+
 message ClientMessage {
   oneof Request {
     Data data = 1;
-    SyncMessage sync_message = 2;
+    ClientInitMessage client_init_message = 2;
   }
 
   oneof Response {
@@ -33,6 +44,7 @@ message ServerMessage {
   oneof Request {
     Data data = 1;
     SyncMessage sync_message = 2;
+    NeedClientInitMessage need_client_init_message = 3;
   }
 
   oneof Response {

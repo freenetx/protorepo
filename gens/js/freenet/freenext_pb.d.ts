@@ -7,16 +7,13 @@ export class SyncMessage extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  clearLanIpsList(): void;
-  getLanIpsList(): Array<string>;
-  setLanIpsList(value: Array<string>): void;
-  addLanIps(value: string, index?: number): string;
+  clearForwardIpsList(): void;
+  getForwardIpsList(): Array<string>;
+  setForwardIpsList(value: Array<string>): void;
+  addForwardIps(value: string, index?: number): string;
 
-  clearVpnIpsList(): void;
-  getVpnIpsList(): Array<string>;
-  setVpnIpsList(value: Array<string>): void;
-  addVpnIps(value: string, index?: number): string;
-
+  getKnownClientsMap(): jspb.Map<string, string>;
+  clearKnownClientsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SyncMessage.AsObject;
   static toObject(includeInstance: boolean, msg: SyncMessage): SyncMessage.AsObject;
@@ -30,8 +27,8 @@ export class SyncMessage extends jspb.Message {
 export namespace SyncMessage {
   export type AsObject = {
     id: string,
-    lanIpsList: Array<string>,
-    vpnIpsList: Array<string>,
+    forwardIpsList: Array<string>,
+    knownClientsMap: Array<[string, string]>,
   }
 }
 
@@ -77,16 +74,68 @@ export namespace Data {
   }
 }
 
+export class ClientInitMessage extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  clearLanIpsList(): void;
+  getLanIpsList(): Array<string>;
+  setLanIpsList(value: Array<string>): void;
+  addLanIps(value: string, index?: number): string;
+
+  clearVpnIpsList(): void;
+  getVpnIpsList(): Array<string>;
+  setVpnIpsList(value: Array<string>): void;
+  addVpnIps(value: string, index?: number): string;
+
+  getClientAddress(): string;
+  setClientAddress(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ClientInitMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: ClientInitMessage): ClientInitMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ClientInitMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ClientInitMessage;
+  static deserializeBinaryFromReader(message: ClientInitMessage, reader: jspb.BinaryReader): ClientInitMessage;
+}
+
+export namespace ClientInitMessage {
+  export type AsObject = {
+    id: string,
+    lanIpsList: Array<string>,
+    vpnIpsList: Array<string>,
+    clientAddress: string,
+  }
+}
+
+export class NeedClientInitMessage extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): NeedClientInitMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: NeedClientInitMessage): NeedClientInitMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: NeedClientInitMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NeedClientInitMessage;
+  static deserializeBinaryFromReader(message: NeedClientInitMessage, reader: jspb.BinaryReader): NeedClientInitMessage;
+}
+
+export namespace NeedClientInitMessage {
+  export type AsObject = {
+  }
+}
+
 export class ClientMessage extends jspb.Message {
   hasData(): boolean;
   clearData(): void;
   getData(): Data | undefined;
   setData(value?: Data): void;
 
-  hasSyncMessage(): boolean;
-  clearSyncMessage(): void;
-  getSyncMessage(): SyncMessage | undefined;
-  setSyncMessage(value?: SyncMessage): void;
+  hasClientInitMessage(): boolean;
+  clearClientInitMessage(): void;
+  getClientInitMessage(): ClientInitMessage | undefined;
+  setClientInitMessage(value?: ClientInitMessage): void;
 
   hasMessageAck(): boolean;
   clearMessageAck(): void;
@@ -108,14 +157,14 @@ export class ClientMessage extends jspb.Message {
 export namespace ClientMessage {
   export type AsObject = {
     data?: Data.AsObject,
-    syncMessage?: SyncMessage.AsObject,
+    clientInitMessage?: ClientInitMessage.AsObject,
     messageAck?: MessageAck.AsObject,
   }
 
   export enum RequestCase {
     REQUEST_NOT_SET = 0,
     DATA = 1,
-    SYNC_MESSAGE = 2,
+    CLIENT_INIT_MESSAGE = 2,
   }
 
   export enum ResponseCase {
@@ -134,6 +183,11 @@ export class ServerMessage extends jspb.Message {
   clearSyncMessage(): void;
   getSyncMessage(): SyncMessage | undefined;
   setSyncMessage(value?: SyncMessage): void;
+
+  hasNeedClientInitMessage(): boolean;
+  clearNeedClientInitMessage(): void;
+  getNeedClientInitMessage(): NeedClientInitMessage | undefined;
+  setNeedClientInitMessage(value?: NeedClientInitMessage): void;
 
   hasMessageAck(): boolean;
   clearMessageAck(): void;
@@ -156,6 +210,7 @@ export namespace ServerMessage {
   export type AsObject = {
     data?: Data.AsObject,
     syncMessage?: SyncMessage.AsObject,
+    needClientInitMessage?: NeedClientInitMessage.AsObject,
     messageAck?: MessageAck.AsObject,
   }
 
@@ -163,6 +218,7 @@ export namespace ServerMessage {
     REQUEST_NOT_SET = 0,
     DATA = 1,
     SYNC_MESSAGE = 2,
+    NEED_CLIENT_INIT_MESSAGE = 3,
   }
 
   export enum ResponseCase {

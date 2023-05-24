@@ -179,6 +179,10 @@
             <ul>
               
                 <li>
+                  <a href="#freenet.api.ClientInitMessage"><span class="badge">M</span>ClientInitMessage</a>
+                </li>
+              
+                <li>
                   <a href="#freenet.api.ClientMessage"><span class="badge">M</span>ClientMessage</a>
                 </li>
               
@@ -191,11 +195,19 @@
                 </li>
               
                 <li>
+                  <a href="#freenet.api.NeedClientInitMessage"><span class="badge">M</span>NeedClientInitMessage</a>
+                </li>
+              
+                <li>
                   <a href="#freenet.api.ServerMessage"><span class="badge">M</span>ServerMessage</a>
                 </li>
               
                 <li>
                   <a href="#freenet.api.SyncMessage"><span class="badge">M</span>SyncMessage</a>
+                </li>
+              
+                <li>
+                  <a href="#freenet.api.SyncMessage.KnownClientsEntry"><span class="badge">M</span>SyncMessage.KnownClientsEntry</a>
                 </li>
               
               
@@ -216,6 +228,51 @@
       <p></p>
 
       
+        <h3 id="freenet.api.ClientInitMessage">ClientInitMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lan_ips</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vpn_ips</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>client_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="freenet.api.ClientMessage">ClientMessage</h3>
         <p></p>
 
@@ -234,8 +291,8 @@
                 </tr>
               
                 <tr>
-                  <td>sync_message</td>
-                  <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
+                  <td>client_init_message</td>
+                  <td><a href="#freenet.api.ClientInitMessage">ClientInitMessage</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -302,6 +359,13 @@
 
         
       
+        <h3 id="freenet.api.NeedClientInitMessage">NeedClientInitMessage</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id="freenet.api.ServerMessage">ServerMessage</h3>
         <p></p>
 
@@ -322,6 +386,13 @@
                 <tr>
                   <td>sync_message</td>
                   <td><a href="#freenet.api.SyncMessage">SyncMessage</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>need_client_init_message</td>
+                  <td><a href="#freenet.api.NeedClientInitMessage">NeedClientInitMessage</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -358,16 +429,47 @@
                 </tr>
               
                 <tr>
-                  <td>lan_ips</td>
+                  <td>forward_ips</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>vpn_ips</td>
-                  <td><a href="#string">string</a></td>
+                  <td>known_clients</td>
+                  <td><a href="#freenet.api.SyncMessage.KnownClientsEntry">SyncMessage.KnownClientsEntry</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="freenet.api.SyncMessage.KnownClientsEntry">SyncMessage.KnownClientsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               

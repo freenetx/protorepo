@@ -59,6 +59,8 @@ func (m *SyncMessage) validate(all bool) error {
 
 	// no validation rules for Id
 
+	// no validation rules for KnownClients
+
 	if len(errors) > 0 {
 		return SyncMessageMultiError(errors)
 	}
@@ -337,6 +339,214 @@ var _ interface {
 	ErrorName() string
 } = DataValidationError{}
 
+// Validate checks the field values on ClientInitMessage with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ClientInitMessage) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ClientInitMessage with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ClientInitMessageMultiError, or nil if none found.
+func (m *ClientInitMessage) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ClientInitMessage) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for ClientAddress
+
+	if len(errors) > 0 {
+		return ClientInitMessageMultiError(errors)
+	}
+
+	return nil
+}
+
+// ClientInitMessageMultiError is an error wrapping multiple validation errors
+// returned by ClientInitMessage.ValidateAll() if the designated constraints
+// aren't met.
+type ClientInitMessageMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ClientInitMessageMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ClientInitMessageMultiError) AllErrors() []error { return m }
+
+// ClientInitMessageValidationError is the validation error returned by
+// ClientInitMessage.Validate if the designated constraints aren't met.
+type ClientInitMessageValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ClientInitMessageValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ClientInitMessageValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ClientInitMessageValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ClientInitMessageValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ClientInitMessageValidationError) ErrorName() string {
+	return "ClientInitMessageValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ClientInitMessageValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sClientInitMessage.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ClientInitMessageValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ClientInitMessageValidationError{}
+
+// Validate checks the field values on NeedClientInitMessage with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *NeedClientInitMessage) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on NeedClientInitMessage with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// NeedClientInitMessageMultiError, or nil if none found.
+func (m *NeedClientInitMessage) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *NeedClientInitMessage) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return NeedClientInitMessageMultiError(errors)
+	}
+
+	return nil
+}
+
+// NeedClientInitMessageMultiError is an error wrapping multiple validation
+// errors returned by NeedClientInitMessage.ValidateAll() if the designated
+// constraints aren't met.
+type NeedClientInitMessageMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m NeedClientInitMessageMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m NeedClientInitMessageMultiError) AllErrors() []error { return m }
+
+// NeedClientInitMessageValidationError is the validation error returned by
+// NeedClientInitMessage.Validate if the designated constraints aren't met.
+type NeedClientInitMessageValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e NeedClientInitMessageValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e NeedClientInitMessageValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e NeedClientInitMessageValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e NeedClientInitMessageValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e NeedClientInitMessageValidationError) ErrorName() string {
+	return "NeedClientInitMessageValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e NeedClientInitMessageValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sNeedClientInitMessage.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = NeedClientInitMessageValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = NeedClientInitMessageValidationError{}
+
 // Validate checks the field values on ClientMessage with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -401,7 +611,7 @@ func (m *ClientMessage) validate(all bool) error {
 			}
 		}
 
-	case *ClientMessage_SyncMessage:
+	case *ClientMessage_ClientInitMessage:
 		if v == nil {
 			err := ClientMessageValidationError{
 				field:  "Request",
@@ -414,11 +624,11 @@ func (m *ClientMessage) validate(all bool) error {
 		}
 
 		if all {
-			switch v := interface{}(m.GetSyncMessage()).(type) {
+			switch v := interface{}(m.GetClientInitMessage()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ClientMessageValidationError{
-						field:  "SyncMessage",
+						field:  "ClientInitMessage",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -426,16 +636,16 @@ func (m *ClientMessage) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, ClientMessageValidationError{
-						field:  "SyncMessage",
+						field:  "ClientInitMessage",
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetSyncMessage()).(interface{ Validate() error }); ok {
+		} else if v, ok := interface{}(m.GetClientInitMessage()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ClientMessageValidationError{
-					field:  "SyncMessage",
+					field:  "ClientInitMessage",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -668,6 +878,47 @@ func (m *ServerMessage) validate(all bool) error {
 			if err := v.Validate(); err != nil {
 				return ServerMessageValidationError{
 					field:  "SyncMessage",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	case *ServerMessage_NeedClientInitMessage:
+		if v == nil {
+			err := ServerMessageValidationError{
+				field:  "Request",
+				reason: "oneof value cannot be a typed-nil",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+		if all {
+			switch v := interface{}(m.GetNeedClientInitMessage()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ServerMessageValidationError{
+						field:  "NeedClientInitMessage",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ServerMessageValidationError{
+						field:  "NeedClientInitMessage",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetNeedClientInitMessage()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ServerMessageValidationError{
+					field:  "NeedClientInitMessage",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}

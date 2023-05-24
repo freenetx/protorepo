@@ -5,11 +5,8 @@ import * as jspb from "google-protobuf";
 import * as share_share_pb from "../../share/share_pb";
 
 export class SetKey extends jspb.Message {
-  getSelfKey(): string;
-  setSelfKey(value: string): void;
-
-  getDestinationKey(): string;
-  setDestinationKey(value: string): void;
+  getKey(): string;
+  setKey(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SetKey.AsObject;
@@ -23,8 +20,7 @@ export class SetKey extends jspb.Message {
 
 export namespace SetKey {
   export type AsObject = {
-    selfKey: string,
-    destinationKey: string,
+    key: string,
   }
 }
 

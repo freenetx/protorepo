@@ -56,9 +56,7 @@ func (m *SetKey) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for SelfKey
-
-	// no validation rules for DestinationKey
+	// no validation rules for Key
 
 	if len(errors) > 0 {
 		return SetKeyMultiError(errors)

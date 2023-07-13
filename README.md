@@ -17,3 +17,9 @@
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 ```
+
+
+## Windows编译注意事项 - 貌似只是windows上使用`Git for Windows`
+
+1. 新版 validate_out 不支持 ./tmp 的形式
+2. js_out 和 ts_out 不支持 source_relative

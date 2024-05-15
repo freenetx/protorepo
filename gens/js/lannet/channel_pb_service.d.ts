@@ -1,32 +1,35 @@
-// package: channel.api
-// file: channel/channel.proto
+// package: lannet.api
+// file: lannet/channel.proto
 
-import * as channel_channel_pb from "../channel/channel_pb";
-import * as share_share_pb from "../share/share_pb";
+import * as lannet_channel_pb from "../lannet/channel_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type ChannelServiceTest = {
+type CenterServiceChannel = {
   readonly methodName: string;
-  readonly service: typeof ChannelService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof share_share_pb.Empty;
-  readonly responseType: typeof share_share_pb.Empty;
-};
-
-type ChannelServiceChannel = {
-  readonly methodName: string;
-  readonly service: typeof ChannelService;
+  readonly service: typeof CenterService;
   readonly requestStream: true;
   readonly responseStream: true;
-  readonly requestType: typeof channel_channel_pb.ChannelRequest;
-  readonly responseType: typeof channel_channel_pb.ReceiveResponse;
+  readonly requestType: typeof lannet_channel_pb.CenterRequest;
+  readonly responseType: typeof lannet_channel_pb.CenterResponse;
 };
 
-export class ChannelService {
+export class CenterService {
   static readonly serviceName: string;
-  static readonly Test: ChannelServiceTest;
-  static readonly Channel: ChannelServiceChannel;
+  static readonly Channel: CenterServiceChannel;
+}
+
+type DirectNetServiceChannel = {
+  readonly methodName: string;
+  readonly service: typeof DirectNetService;
+  readonly requestStream: true;
+  readonly responseStream: true;
+  readonly requestType: typeof lannet_channel_pb.DirectNetRequest;
+  readonly responseType: typeof lannet_channel_pb.DirectNetResponse;
+};
+
+export class DirectNetService {
+  static readonly serviceName: string;
+  static readonly Channel: DirectNetServiceChannel;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -57,19 +60,17 @@ interface BidirectionalStream<ReqT, ResT> {
   on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
-export class ChannelServiceClient {
+export class CenterServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  test(
-    requestMessage: share_share_pb.Empty,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: share_share_pb.Empty|null) => void
-  ): UnaryResponse;
-  test(
-    requestMessage: share_share_pb.Empty,
-    callback: (error: ServiceError|null, responseMessage: share_share_pb.Empty|null) => void
-  ): UnaryResponse;
-  channel(metadata?: grpc.Metadata): BidirectionalStream<channel_channel_pb.ChannelRequest, channel_channel_pb.ReceiveResponse>;
+  channel(metadata?: grpc.Metadata): BidirectionalStream<lannet_channel_pb.CenterRequest, lannet_channel_pb.CenterResponse>;
+}
+
+export class DirectNetServiceClient {
+  readonly serviceHost: string;
+
+  constructor(serviceHost: string, options?: grpc.RpcOptions);
+  channel(metadata?: grpc.Metadata): BidirectionalStream<lannet_channel_pb.DirectNetRequest, lannet_channel_pb.DirectNetResponse>;
 }
 

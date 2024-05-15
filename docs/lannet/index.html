@@ -175,34 +175,62 @@
         
           
           <li>
-            <a href="#channel%2fchannel.proto">channel/channel.proto</a>
+            <a href="#lannet%2fchannel.proto">lannet/channel.proto</a>
             <ul>
               
                 <li>
-                  <a href="#channel.api.ChannelRequest"><span class="badge">M</span>ChannelRequest</a>
+                  <a href="#lannet.api.CenterRequest"><span class="badge">M</span>CenterRequest</a>
                 </li>
               
                 <li>
-                  <a href="#channel.api.Data"><span class="badge">M</span>Data</a>
+                  <a href="#lannet.api.CenterResponse"><span class="badge">M</span>CenterResponse</a>
                 </li>
               
                 <li>
-                  <a href="#channel.api.KeyAccepted"><span class="badge">M</span>KeyAccepted</a>
+                  <a href="#lannet.api.DirectNetHelloClient"><span class="badge">M</span>DirectNetHelloClient</a>
                 </li>
               
                 <li>
-                  <a href="#channel.api.ReceiveResponse"><span class="badge">M</span>ReceiveResponse</a>
+                  <a href="#lannet.api.DirectNetHelloServer"><span class="badge">M</span>DirectNetHelloServer</a>
                 </li>
               
                 <li>
-                  <a href="#channel.api.SetKey"><span class="badge">M</span>SetKey</a>
+                  <a href="#lannet.api.DirectNetRequest"><span class="badge">M</span>DirectNetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.DirectNetResponse"><span class="badge">M</span>DirectNetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.HelloClient"><span class="badge">M</span>HelloClient</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.HelloClient.ClientIpsEntry"><span class="badge">M</span>HelloClient.ClientIpsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.HelloClient.ClientsEntry"><span class="badge">M</span>HelloClient.ClientsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.HelloServer"><span class="badge">M</span>HelloServer</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.StringList"><span class="badge">M</span>StringList</a>
                 </li>
               
               
               
               
                 <li>
-                  <a href="#channel.api.ChannelService"><span class="badge">S</span>ChannelService</a>
+                  <a href="#lannet.api.CenterService"><span class="badge">S</span>CenterService</a>
+                </li>
+              
+                <li>
+                  <a href="#lannet.api.DirectNetService"><span class="badge">S</span>DirectNetService</a>
                 </li>
               
             </ul>
@@ -215,12 +243,12 @@
     
       
       <div class="file-heading">
-        <h2 id="channel/channel.proto">channel/channel.proto</h2><a href="#title">Top</a>
+        <h2 id="lannet/channel.proto">lannet/channel.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="channel.api.ChannelRequest">ChannelRequest</h3>
+        <h3 id="lannet.api.CenterRequest">CenterRequest</h3>
         <p></p>
 
         
@@ -231,46 +259,8 @@
             <tbody>
               
                 <tr>
-                  <td>set_key</td>
-                  <td><a href="#channel.api.SetKey">SetKey</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#channel.api.Data">Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="channel.api.Data">Data</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>src_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>dst_key</td>
-                  <td><a href="#string">string</a></td>
+                  <td>hello</td>
+                  <td><a href="#lannet.api.HelloServer">HelloServer</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -289,14 +279,7 @@
 
         
       
-        <h3 id="channel.api.KeyAccepted">KeyAccepted</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="channel.api.ReceiveResponse">ReceiveResponse</h3>
+        <h3 id="lannet.api.CenterResponse">CenterResponse</h3>
         <p></p>
 
         
@@ -307,15 +290,15 @@
             <tbody>
               
                 <tr>
-                  <td>key_accepted</td>
-                  <td><a href="#channel.api.KeyAccepted">KeyAccepted</a></td>
+                  <td>hello</td>
+                  <td><a href="#lannet.api.HelloClient">HelloClient</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>data</td>
-                  <td><a href="#channel.api.Data">Data</a></td>
+                  <td><a href="#bytes">bytes</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -327,7 +310,14 @@
 
         
       
-        <h3 id="channel.api.SetKey">SetKey</h3>
+        <h3 id="lannet.api.DirectNetHelloClient">DirectNetHelloClient</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="lannet.api.DirectNetHelloServer">DirectNetHelloServer</h3>
         <p></p>
 
         
@@ -351,13 +341,237 @@
 
         
       
+        <h3 id="lannet.api.DirectNetRequest">DirectNetRequest</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>hello</td>
+                  <td><a href="#lannet.api.DirectNetHelloServer">DirectNetHelloServer</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.DirectNetResponse">DirectNetResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>hello</td>
+                  <td><a href="#lannet.api.DirectNetHelloClient">DirectNetHelloClient</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.HelloClient">HelloClient</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>clients</td>
+                  <td><a href="#lannet.api.HelloClient.ClientsEntry">HelloClient.ClientsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>client_ips</td>
+                  <td><a href="#lannet.api.HelloClient.ClientIpsEntry">HelloClient.ClientIpsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vpn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.HelloClient.ClientIpsEntry">HelloClient.ClientIpsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#lannet.api.StringList">StringList</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.HelloClient.ClientsEntry">HelloClient.ClientsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.HelloServer">HelloServer</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>my_ips</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>my_encoded_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="lannet.api.StringList">StringList</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>strings</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
 
       
 
       
-        <h3 id="channel.api.ChannelService">ChannelService</h3>
+
+      
+        <h3 id="lannet.api.CenterService">CenterService</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -366,16 +580,28 @@
           <tbody>
             
               <tr>
-                <td>Test</td>
-                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
-                <td><a href="#share.api.Empty">.share.api.Empty</a></td>
+                <td>Channel</td>
+                <td><a href="#lannet.api.CenterRequest">CenterRequest</a> stream</td>
+                <td><a href="#lannet.api.CenterResponse">CenterResponse</a> stream</td>
                 <td><p></p></td>
               </tr>
             
+          </tbody>
+        </table>
+
+        
+        <h3 id="lannet.api.DirectNetService">DirectNetService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
               <tr>
                 <td>Channel</td>
-                <td><a href="#channel.api.ChannelRequest">ChannelRequest</a> stream</td>
-                <td><a href="#channel.api.ReceiveResponse">ReceiveResponse</a> stream</td>
+                <td><a href="#lannet.api.DirectNetRequest">DirectNetRequest</a> stream</td>
+                <td><a href="#lannet.api.DirectNetResponse">DirectNetResponse</a> stream</td>
                 <td><p></p></td>
               </tr>
             

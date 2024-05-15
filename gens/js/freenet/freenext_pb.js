@@ -1,4 +1,4 @@
-// source: proto/freenet/freenext.proto
+// source: freenet/freenext.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = Function('return this')();
 
 goog.exportSymbol('proto.freenet.api.ClientInitMessage', null, global);
 goog.exportSymbol('proto.freenet.api.ClientMessage', null, global);
@@ -395,8 +389,7 @@ proto.freenet.api.SyncMessage.prototype.getKnownClientsMap = function(opt_noLazy
  */
 proto.freenet.api.SyncMessage.prototype.clearKnownClientsMap = function() {
   this.getKnownClientsMap().clear();
-  return this;
-};
+  return this;};
 
 
 

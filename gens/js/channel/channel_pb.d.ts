@@ -1,8 +1,8 @@
 // package: channel.api
-// file: proto/channel/channel.proto
+// file: channel/channel.proto
 
 import * as jspb from "google-protobuf";
-import * as share_share_pb from "../../share/share_pb";
+import * as share_share_pb from "../share/share_pb";
 
 export class SetKey extends jspb.Message {
   getKey(): string;

@@ -52,7 +52,7 @@ compile_in_docker: lint_in_docker
 	@mkdir -p gens/go
 	@mkdir -p gens/js
 	@if [[ -e docs ]]; then rm -rf docs; fi;
-	/usr/local/bin/docker run --rm -v $(WORK_PATH):/work -w /work rvolosatovs/protoc \
+	/usr/local/bin/docker run --rm -v ${WORK_PATH}:/work -w /work rvolosatovs/protoc:4.0 \
 		--proto_path=./proto \
 		--go_out=./tmp \
 		--go-grpc_out=./tmp  \

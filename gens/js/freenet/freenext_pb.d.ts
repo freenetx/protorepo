@@ -1,5 +1,5 @@
 // package: freenet.api
-// file: proto/freenet/freenext.proto
+// file: freenet/freenext.proto
 
 import * as jspb from "google-protobuf";
 

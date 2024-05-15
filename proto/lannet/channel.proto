@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package lannet.api;
+
+option go_package = "github.com/freenetx/protorepo/gens/go/protorepo-lannet-go;lannetpb";
+
+message HelloServer {
+  string key = 1;
+  repeated string my_ips = 2;
+  string my_encoded_address = 3;
+}
+
+message CenterRequest {
+  oneof Req {
+    HelloServer hello = 1;
+    bytes data = 2;
+  }
+}
+
+message StringList {
+  repeated string strings = 1;
+}
+
+message HelloClient {
+  map<string, string> clients = 1;
+  map<string, StringList> client_ips = 2;
+  string vpn = 3;
+}
+
+message CenterResponse {
+  oneof Resp {
+    HelloClient hello = 1;
+    bytes data = 2;
+  }
+}
+
+
+service CenterService {
+  rpc Channel(stream CenterRequest) returns (stream CenterResponse) {}
+}
+
+message DirectNetHelloServer {
+  string key = 1;
+}
+
+message DirectNetRequest {
+  oneof Req {
+    DirectNetHelloServer hello = 1;
+    bytes data = 2;
+  }
+}
+
+message DirectNetHelloClient {
+
+}
+
+message DirectNetResponse {
+  oneof Resp {
+    DirectNetHelloClient hello = 1;
+    bytes data = 2;
+  }
+}
+
+
+service DirectNetService {
+  rpc Channel(stream DirectNetRequest) returns (stream DirectNetResponse) {}
+}

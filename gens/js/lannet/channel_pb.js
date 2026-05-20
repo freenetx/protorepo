@@ -1694,7 +1694,7 @@ proto.lannet.api.DirectNetHelloClient.prototype.toObject = function(opt_includeI
  */
 proto.lannet.api.DirectNetHelloClient.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    key: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1731,6 +1731,10 @@ proto.lannet.api.DirectNetHelloClient.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1760,6 +1764,31 @@ proto.lannet.api.DirectNetHelloClient.prototype.serializeBinary = function() {
  */
 proto.lannet.api.DirectNetHelloClient.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string key = 1;
+ * @return {string}
+ */
+proto.lannet.api.DirectNetHelloClient.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.lannet.api.DirectNetHelloClient} returns this
+ */
+proto.lannet.api.DirectNetHelloClient.prototype.setKey = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

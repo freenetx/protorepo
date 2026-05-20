@@ -213,6 +213,9 @@ export namespace DirectNetRequest {
 }
 
 export class DirectNetHelloClient extends jspb.Message {
+  getKey(): string;
+  setKey(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DirectNetHelloClient.AsObject;
   static toObject(includeInstance: boolean, msg: DirectNetHelloClient): DirectNetHelloClient.AsObject;
@@ -225,6 +228,7 @@ export class DirectNetHelloClient extends jspb.Message {
 
 export namespace DirectNetHelloClient {
   export type AsObject = {
+    key: string,
   }
 }
 

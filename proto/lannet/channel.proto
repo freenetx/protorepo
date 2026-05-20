@@ -51,7 +51,7 @@ message DirectNetRequest {
 }
 
 message DirectNetHelloClient {
-
+  string key = 1;
 }
 
 message DirectNetResponse {

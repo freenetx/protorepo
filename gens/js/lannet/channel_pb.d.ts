@@ -15,8 +15,6 @@ export class HelloServer extends jspb.Message {
   getMyEncodedAddress(): string;
   setMyEncodedAddress(value: string): void;
 
-  getVDnsTeimsMap(): jspb.Map<string, string>;
-  clearVDnsTeimsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HelloServer.AsObject;
   static toObject(includeInstance: boolean, msg: HelloServer): HelloServer.AsObject;
@@ -32,7 +30,6 @@ export namespace HelloServer {
     key: string,
     myIpsList: Array<string>,
     myEncodedAddress: string,
-    vDnsTeimsMap: Array<[string, string]>,
   }
 }
 
@@ -103,6 +100,8 @@ export class HelloClient extends jspb.Message {
   getVpn(): string;
   setVpn(value: string): void;
 
+  getVDnsTeimsMap(): jspb.Map<string, string>;
+  clearVDnsTeimsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HelloClient.AsObject;
   static toObject(includeInstance: boolean, msg: HelloClient): HelloClient.AsObject;
@@ -118,6 +117,7 @@ export namespace HelloClient {
     clientsMap: Array<[string, string]>,
     clientIpsMap: Array<[string, StringList.AsObject]>,
     vpn: string,
+    vDnsTeimsMap: Array<[string, string]>,
   }
 }
 

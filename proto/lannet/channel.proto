@@ -8,6 +8,7 @@ message HelloServer {
   string key = 1;
   repeated string my_ips = 2;
   string my_encoded_address = 3;
+  map<string, string> v_dns_teims = 4;
 }
 
 message CenterRequest {
@@ -25,7 +26,6 @@ message HelloClient {
   map<string, string> clients = 1;
   map<string, StringList> client_ips = 2;
   string vpn = 3;
-  map<string, string> v_dns_teims = 4;
 }
 
 message CenterResponse {

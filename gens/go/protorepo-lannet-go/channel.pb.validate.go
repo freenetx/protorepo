@@ -61,6 +61,8 @@ func (m *HelloServer) validate(all bool) error {
 
 	// no validation rules for MyEncodedAddress
 
+	// no validation rules for VDnsTeims
+
 	if len(errors) > 0 {
 		return HelloServerMultiError(errors)
 	}

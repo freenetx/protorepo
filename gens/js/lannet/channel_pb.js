@@ -258,7 +258,8 @@ proto.lannet.api.HelloServer.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: jspb.Message.getFieldWithDefault(msg, 1, ""),
     myIpsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    myEncodedAddress: jspb.Message.getFieldWithDefault(msg, 3, "")
+    myEncodedAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    vDnsTeimsMap: (f = msg.getVDnsTeimsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -306,6 +307,12 @@ proto.lannet.api.HelloServer.deserializeBinaryFromReader = function(msg, reader)
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setMyEncodedAddress(value);
+      break;
+    case 4:
+      var value = msg.getVDnsTeimsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -356,6 +363,10 @@ proto.lannet.api.HelloServer.serializeBinaryToWriter = function(message, writer)
       3,
       f
     );
+  }
+  f = message.getVDnsTeimsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -431,6 +442,28 @@ proto.lannet.api.HelloServer.prototype.getMyEncodedAddress = function() {
 proto.lannet.api.HelloServer.prototype.setMyEncodedAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
+
+
+/**
+ * map<string, string> v_dns_teims = 4;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.lannet.api.HelloServer.prototype.getVDnsTeimsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 4, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.lannet.api.HelloServer} returns this
+ */
+proto.lannet.api.HelloServer.prototype.clearVDnsTeimsMap = function() {
+  this.getVDnsTeimsMap().clear();
+  return this;};
 
 
 

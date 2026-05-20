@@ -8,7 +8,6 @@ message HelloServer {
   string key = 1;
   repeated string my_ips = 2;
   string my_encoded_address = 3;
-  map<string, string> v_dns_teims = 4;
 }
 
 message CenterRequest {
